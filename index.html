@@ -6,34 +6,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <title>Document</title>
 </head>
 
 <body>
     <header>
-        <h1>
-            Weather or Not
-        </h1>
         <nav>
-
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">Weather or Not</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <!-- <li><a href="sass.html">Sass</a></li> -->
+                    <li><a href="https://github.com/Shengaero/weather-or-not">Github</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
 
     <main>
-        <div>
-            <h2></h2>
-            <div>
-                <input type="text">
+        <!-- This is the Main Card display that will show whether or not you need to bring an umbrella -->
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="card blue-grey darken-1 card-panel hoverable">
+                    <!-- <div class="z-depth-4 "> -->
+                    <div class="card-content white-text center-align ">
+                        <span class="card-title">You Should Bring An Umbrella</span>
+                        <p>This will contain context for the reasoning behind needing an umbrella, raincoat, and ect.</p>
+                    </div>
+                    <!-- <div class="card-action">
+                        <a href="#">This is a link</a>
+                        <a href="#">This is a link</a>
+                    </div> -->
+                    <!-- </div> -->
+                </div>
             </div>
-            <button>
-
-            </button>
         </div>
     </main>
 
     <footer>
 
     </footer>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
