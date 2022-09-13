@@ -12,12 +12,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>Document</title>
+    <title>Weather or Not</title>
 </head>
 
 <body>
     <header>
         <nav>
+            <!-- This is the header which contains the nav bar. Contains the Website Name and Links to About us and Github -->
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo">Weather or Not</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -29,11 +30,11 @@
         </nav>
     </header>
 
-    <main>
+    <main class="container">
         <!-- This is the Main Card display that will show whether or not you need to bring an umbrella -->
         <div class="row">
-            <div class="col s12 m6">
-                <div class="card blue-grey darken-1 card-panel hoverable">
+            <div class="col s12 m12">
+                <div class="card blue-grey darken-1 card-panel hoverable ">
                     <div class="card-content white-text center-align ">
                         <span class="card-title">You Should Bring An Umbrella</span>
                         <p>This will contain context for the reasoning behind needing an umbrella, raincoat, and ect.</p>
@@ -45,7 +46,7 @@
         <div class="row main-text">
             <form class="col s12 ">
                 <div class="row">
-                    <div class="input-field col s6">
+                    <div class="input-field col s12">
                         <input id="search-city" type="text" class="">
                         <label>Enter City</label>
                         <button id="search-btn" type="submit">Find City</button>
@@ -58,9 +59,9 @@
     <footer>
 
     </footer>
+    <!-- Added jquery, dayjs, materialize, and javascript scripts -->
     <script src="https://code.jquery.com/jquery-3.6.1.js"
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-    <!-- I added the js and css scripts here -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.5/dayjs.min.js"
         integrity="sha512-Ot7ArUEhJDU0cwoBNNnWe487kjL5wAOsIYig8llY/l0P2TUFwgsAHVmrZMHsT8NGo+HwkjTJsNErS6QqIkBxDw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
