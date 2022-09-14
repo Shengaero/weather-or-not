@@ -15,7 +15,7 @@
     <title>Weather or Not</title>
 </head>
 
-<body>
+<body class="back-row-toggle splat-toggle">
 
     <header>
         <nav>
@@ -51,7 +51,8 @@
                     <div class="input-field col s12 black-text">
                         <input id="search-city" type="text" class="">
                         <label>Enter City</label>
-                        <button class="waves-effect waves-light btn" id="search-btn" autocomplete="off" type="submit">Find City</button>
+                        <button class="waves-effect waves-light btn" id="search-btn" autocomplete="off"
+                            type="submit">Find City</button>
                         <p>
                             <label>
                                 <input type="checkbox" id="save-city" class="filled-in" checked="checked" />
@@ -120,6 +121,14 @@
         </div>
     </main>
 
+    <div class="rain front-row"></div>
+    <div class="rain back-row"></div>
+    <div class="toggles">
+        <div class="splat-toggle toggle active">SPLAT</div>
+        <div class="back-row-toggle toggle active">BACK<br>ROW</div>
+        <div class="single-toggle toggle">SINGLE</div>
+    </div>
+
     <footer>
 
     </footer>
@@ -129,7 +138,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.5/dayjs.min.js"
         integrity="sha512-Ot7ArUEhJDU0cwoBNNnWe487kjL5wAOsIYig8llY/l0P2TUFwgsAHVmrZMHsT8NGo+HwkjTJsNErS6QqIkBxDw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./assets/js/util.js"></script>
     <script src="./assets/js/geocodeAPI.js"></script>
     <script src="./assets/js/nws-api.js"></script>
