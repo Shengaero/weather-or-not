@@ -1,0 +1,13 @@
+.brand-logo {
+    margin-left: 25px;
+}
+
+.head-div {
+    text-align: center;
+    text-decoration: underline;
+}
+
+.name-space {
+    display: flex;
+   justify-content: space-between;
+}
