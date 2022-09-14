@@ -1,12 +1,15 @@
+/* class about the logo header */
 .brand-logo {
     margin-left: 25px;
 }
 
+/* this is adjusts the header */
 .head-div {
     text-align: center;
     text-decoration: underline;
 }
 
+/* this was made to adjust the links*/
 .name-space {
     display: flex;
    justify-content: space-between;
