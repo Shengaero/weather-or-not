@@ -5,13 +5,35 @@ let forecastRoute = 'points/';
 let forecastURL = (lat, lon) => `${nwsBaseURL}${forecastRoute}${lat},${lon}`;
 
 function fetchForecast(lat, lon) {
-    let url = forecastURL(lat, lon);
-    fetch(url).then(responseToJSON)
+    // fetch based on the formatted forecast API URL and return the promise
+    return fetch(forecastURL(lat, lon)).then(responseToJSON)
         .then((json) => {
-            console.log(json);
-            return fetch(json.properties.forecast).then(responseToJSON);
+            // using the forecastHourly URL in the response
+            // we make another request for that data
+            return fetch(json.properties.forecastHourly).then(responseToJSON);
         })
         .then((json) => {
-            console.log(json);
-        })
+            // make an array to populate with the wrapped API data for hourly forecast
+            let forecast = [];
+            // for each hour period in the json
+            for(let i = 0; i < json.properties.periods.length; i++) {
+                let dayForecast = json.properties.periods[i];
+                // wrap the necessary information and push it to the forecast array
+                forecast.push({
+                    description: dayForecast.shortForecast,
+                    time: dayjs(dayForecast.startTime),
+                    temp: dayForecast.temperature
+                });
+            }
+            // wrap geographic information with forecast information
+            let payload = {
+                geo: {
+                    lat: lat,
+                    lon: lon
+                },
+                forecast: forecast
+            };
+            // return the payload
+            return payload;
+        });
 }
