@@ -8,20 +8,21 @@ function cityToLatLon(cityName) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data[0].display_name);
+            // output from open street map for name gives "city(0), county(1), state(2), country(3)" so I split on commas to separate locations
+            let splitArray = data[0].display_name.split(',');
             let geocodedArray = {
-                city: data[0].display_name.split(',')[0],
-                state: data[0].display_name.split(',')[2],
-                country: data[0].display_name.split(',')[3],
+                city: splitArray[0],
+                state: splitArray[2],
+                country: splitArray[3],
                 lat: data[0].lat,
                 lon: data[0].lon
             };
-            console.log(geocodedArray);
             return geocodedArray;
         });
 }
 
-cityToLatLon('Chicago').then(function (data) {
-    console.log(data.lat);
-    console.log(data.lon);
-});
+// commenting out check on data
+// cityToLatLon('Chicago').then(function (data) {
+//     console.log(data.lat);
+//     console.log(data.lon);
+// });
