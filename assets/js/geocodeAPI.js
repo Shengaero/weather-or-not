@@ -1,7 +1,3 @@
-// let searchBtn = $('#search-btn');
-// let searchQuery = $('#search-city')
-// let searchedCity = searchBtn.val()
-
 let apiBase = 'https://nominatim.openstreetmap.org/search?';
 
 function cityToLatLon(cityName) {
