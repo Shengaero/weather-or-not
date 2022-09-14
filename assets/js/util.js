@@ -29,7 +29,7 @@ function storeCoordinates(coords) {
 
 // loads the coordinates if they exist, otherwise returns undefined
 function loadCoordinates() {
-    let coords = undefined;
+    let coords = null;
     let coordsString = localStorage.getItem(coordsLocalStorageKey);
     if(coordsString !== null) {
         coords = {};
