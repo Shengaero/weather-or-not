@@ -4,9 +4,9 @@ let forecastRoute = 'points/';
 // formats lat and lon into full forecast API URL
 let forecastURL = (lat, lon) => `${nwsBaseURL}${forecastRoute}${lat},${lon}`;
 
-function fetchForecast(lat, lon) {
+function fetchForecast(geoInfo) {
     // fetch based on the formatted forecast API URL and return the promise
-    return fetch(forecastURL(lat, lon)).then(responseToJSON)
+    return fetch(forecastURL(geoInfo.lat, geoInfo.lon)).then(responseToJSON)
         .then((json) => {
             // using the forecastHourly URL in the response
             // we make another request for that data
@@ -27,10 +27,7 @@ function fetchForecast(lat, lon) {
             }
             // wrap geographic information with forecast information
             let payload = {
-                geo: {
-                    lat: lat,
-                    lon: lon
-                },
+                geoInfo: geoInfo,
                 forecast: forecast
             };
             // return the payload
