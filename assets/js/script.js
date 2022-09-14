@@ -5,3 +5,11 @@ let displayInfo = $("#tools-needed");
 
 // request user location
 requestLocation();
+
+$(document).ready(function () {
+    $('.modal').modal();
+});
+
+$(document).ready(function () {
+    $('select').formSelect();
+});
