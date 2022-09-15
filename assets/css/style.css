@@ -6,3 +6,9 @@
 .brand-logo {
     margin-left: 25px;
 }
+.options-selected {
+    display: none;
+}
+.checkbox-save {
+    margin-top: 20px;
+}
