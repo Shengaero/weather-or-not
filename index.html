@@ -33,7 +33,7 @@
 
     <main class="container">
         <!-- This is the Main Card display that will show whether or not you need to bring an umbrella -->
-        <div class="row">
+        <div class="row corners main-card">
             <div class="col s12 m12 l12">
                 <div class="card blue lighten-2 darken-1 card-panel hoverable ">
                     <div class="card-content white-text center-align" id="tools-needed">
@@ -45,7 +45,7 @@
             </div>
         </div>
         <!-- This is the form for the city and button -->
-        <div class="row main-text indigo lighten-5">
+        <div class="row main-text indigo lighten-5 corners">
             <form class="col s12 m12 l12 ">
                 <div class="row">
                     <div class="input-field col s12 black-text">
@@ -64,7 +64,7 @@
             </form>
         </div>
         <!-- Modal Trigger -->
-        <div class="indigo lighten-5">
+        <div class="indigo lighten-5 modal-btn corners">
             <a class="waves-effect waves-light btn modal-trigger" href="#modal1" id="settings-btn">Advanced
                 Settings</a>
         </div>
@@ -83,7 +83,7 @@
                     </select>
                 </div>
                 <div class="input-field col s12">
-                    <select multiple>
+                    <select id="time-outside" multiple>
                         <option value="" disabled selected>How many hours will you be outside?</option>
                         <option value="1">6am</option>
                         <option value="2">7am</option>
@@ -109,12 +109,12 @@
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Submit</a>
             </div>
         </div>
-        <div class="indigo lighten-5">
+        <div class="indigo lighten-5 corners">
             <ul id="selected-data" class="collection options-selected">
-                <li class="collection-item" id="days-fore"></li>
-                <li class="collection-item" id="time-outside"></li>
+                <li class="collection-item"><span id="days-fore">Days Forecasted</span></li>
+                <li class="collection-item"><span id="time-outside">What hours will you be outside?</span></li>
             </ul>
-            <p class="checkbox-save">
+            <p class="checkbox-save last-checkbox">
                 <label>
                     <input type="checkbox" id="save-settings" class="filled-in" checked="checked" />
                     <span>Save Settings!</span>
