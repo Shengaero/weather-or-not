@@ -2,6 +2,7 @@
 let searchBtnEl = $('#search-btn');
 let locationInputEl = $("#search-city");
 let displayInfoEl = $("#tools-needed");
+let whyBringEl = $('#why-bring');
 
 // request user location
 requestLocation();
@@ -39,6 +40,7 @@ function displayInfo() {
             let fetchParameters = {lat: data.lat, lon: data.lon};
             return fetchForecast(fetchParameters);
         }).then((data) => {
+            whyBringEl.text(data.forecast[0].description);
             // this will be a function for what we are displaying in the front page 
             console.log(data.forecast[0]);
         }
@@ -52,6 +54,7 @@ function displayInfo() {
             let savedCoords = {fetchParameters};
             return fetchForecast(savedCoords);
         }).then((data) => {
+            whyBringEl.text(data.forecast[0].description);
             // this will be a function for what we are displaying in the front page 
             console.log(data.forecast[0]);
         }
