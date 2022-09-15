@@ -5,7 +5,7 @@ let displayInfo = $("#tools-needed");
 
 // request user location
 requestLocation();
- // opens modal
+// opens modal
 $(document).ready(function () {
     $('.modal').modal();
 });
