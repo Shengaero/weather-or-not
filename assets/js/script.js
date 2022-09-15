@@ -27,34 +27,33 @@ searchBtnEl.click(function (event) {
 function displayInfo() {
     let params = getQueryParams();
     let coords = loadCoordinates();
-    console.log(params);
-    console.log(params.city);
-    let cityParamExists = (typeof params.city) === 'undefined';
+    let cityParamExists = (typeof params.q) !== 'undefined';
     //IF there are no query parameters, and no local storage info THEN display default message
-    if(!cityParamExists && !coords) {
+    if(!cityParamExists && coords === null) {
         console.log('Default message');
 
         //ELSE IF there are no query parameters, but there is local storage info THEN display info based on local storage info
     } else if(!cityParamExists && coords != null) {
         console.log('Display info based on local storage');
-        fetchForecast(coords).then(
-            console.log(coords)
+        fetchForecast(coords).then((data) => {
+            console.log(data.forecast[0]);
+        }
         );
 
         //ELSE IF there are query parameters THEN display info based off of query parameters
     } else if(cityParamExists) {
-        let cityName = params.city;
+        let cityName = params.q;
         console.log('Display info based off query parameters');
-        fetchLatLon(cityName).then(
-            console.log(cityName)
+        fetchLatLon(cityName).then((data) => {
+            let savedCoords = {lat: data.lat, lon: data.lon};
+            fetchForecast(savedCoords).then((data) => {
+                console.log(data.forecast[0]);
+            }
+            );
+        }
         );
     };
 }
 
 // if we are not on index.html homepage, dont run this function
 displayInfo();
-
-
-
-// if we have the coordinates already fetch the weather;
-// if we dont have the coordinates we are going to get coordinates then fetch the weather

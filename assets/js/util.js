@@ -1,5 +1,5 @@
 let coordsLocalStorageKey = 'preferred-coordinates';
-let allowedQueryParameters = ['city']
+let allowedQueryParameters = ['q']
 
 // shortcut for fetch requests
 function responseToJSON(response) {
