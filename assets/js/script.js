@@ -4,9 +4,13 @@ let locationInputEl = $("#search-city");
 let displayInfoEl = $("#tools-needed");
 let whyBringEl = $('#why-bring');
 
+var timeOutside = $("#time-outside")
+console.log(timeOutside.val());
+// var instance = M.Modal.getInstance(elem);
 // request user location
 requestLocation();
 // opens modal
+
 $(document).ready(function () {
     $('.modal').modal();
 });
@@ -14,6 +18,27 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('select').formSelect();
 });
+
+// instance.onCloseEnd({
+//     reset()
+// })
+$('#modal-submit').on('click', onModalSubmit);
+
+function onModalSubmit() {
+    // alert('working!')
+    console.log(timeOutside.val());
+
+    localStorage.setItem("hours-outside", JSON.stringify(timeOutside.val()))
+
+    location.reload();
+    
+   
+
+
+    // timeOutside.empty();
+ 
+}
+
 
 //click event for submiting a searched city
 searchBtnEl.click(function (event) {
