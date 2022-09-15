@@ -1,8 +1,28 @@
-/* main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
 .brand-logo {
     margin-left: 25px;
+}
+
+/* .options-selected {
+    display: none;
+} */
+.checkbox-save {
+    margin-top: 20px;
+}
+
+.last-checkbox {
+    padding-bottom: 20px;
+}
+
+.modal-btn {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+}
+
+.corners {
+    border-radius: 10px;
+}
+
+.main-card {
+    margin-top: 100px;
 }

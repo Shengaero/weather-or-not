@@ -21,7 +21,7 @@
         <nav>
             <!-- This is the header which contains the nav bar. Contains the Website Name and Links to About us and Github -->
             <div class="nav-wrapper deep-purple lighten-3">
-                <a href="#" class="brand-logo ">Weather or Not</a>
+                <a href="#" class="brand-logo">Weather or Not</a>
                 <ul id="nav-mobile" class="right">
                     <!-- <li><a href="sass.html">Sass</a></li> -->
                     <li><a href="https://github.com/Shengaero/weather-or-not">Github</a></li>
@@ -33,26 +33,28 @@
 
     <main class="container">
         <!-- This is the Main Card display that will show whether or not you need to bring an umbrella -->
-        <div class="row">
+        <div class="row corners main-card">
             <div class="col s12 m12 l12">
                 <div class="card blue lighten-2 darken-1 card-panel hoverable ">
                     <div class="card-content white-text center-align" id="tools-needed">
-                        <span class="card-title">You Should Bring An Umbrella</span>
-                        <p>This will contain context for the reasoning behind needing an umbrella, raincoat, and ect.
+                        <span class="card-title" id="should-bring">You Should Bring An Umbrella</span>
+                        <p id="why-bring">This will contain context for the reasoning behind needing an umbrella,
+                            raincoat, and ect.
                         </p>
                     </div>
                 </div>
             </div>
         </div>
         <!-- This is the form for the city and button -->
-        <div class="row main-text indigo lighten-5">
+        <div class="row main-text indigo lighten-5 corners">
             <form class="col s12 m12 l12 ">
                 <div class="row">
-                    <div class="input-field col s12 black-text">
+                    <div class="input-field col s12 m12 l12 black-text">
                         <input id="search-city" type="text" class="">
                         <label>Enter City</label>
-                        <button class="waves-effect waves-light btn" id="search-btn" autocomplete="off" type="submit">Find City</button>
-                        <p>
+                        <button class="waves-effect waves-light btn" id="search-btn" autocomplete="off"
+                            type="submit">Find City</button>
+                        <p class="checkbox-save">
                             <label>
                                 <input type="checkbox" id="save-city" class="filled-in" checked="checked" />
                                 <span>Save City!</span>
@@ -63,8 +65,10 @@
             </form>
         </div>
         <!-- Modal Trigger -->
-        <a class="waves-effect waves-light btn modal-trigger" href="#modal1" id="settings-btn">Advanced
-            Settings</a>
+        <div class="indigo lighten-5 modal-btn corners">
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal1" id="settings-btn">Advanced
+                Settings</a>
+        </div>
         <!-- Modal Structure -->
         <div id="modal1" class="modal modal-fixed-footer">
             <div class="modal-content">
@@ -80,7 +84,7 @@
                     </select>
                 </div>
                 <div class="input-field col s12">
-                    <select multiple>
+                    <select id="time-outside" multiple>
                         <option value="" disabled selected>How many hours will you be outside?</option>
                         <option value="1">6am</option>
                         <option value="2">7am</option>
@@ -106,12 +110,12 @@
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Submit</a>
             </div>
         </div>
-        <div class="indigo lighten-5">
-            <ul id="selected-data" class="collection">
-                <li class="collection-item">Days Forecasted?</li>
-                <li class="collection-item">How long will you be outside?</li>
+        <div class="indigo lighten-5 corners">
+            <ul id="selected-data" class="collection options-selected">
+                <li class="collection-item"><span id="days-fore">How many days would you like forecasted?</span></li>
+                <li class="collection-item"><span id="hours-outside">What hours will you be outside?</span></li>
             </ul>
-            <p>
+            <p class="checkbox-save last-checkbox">
                 <label>
                     <input type="checkbox" id="save-settings" class="filled-in" checked="checked" />
                     <span>Save Settings!</span>
@@ -129,7 +133,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.5/dayjs.min.js"
         integrity="sha512-Ot7ArUEhJDU0cwoBNNnWe487kjL5wAOsIYig8llY/l0P2TUFwgsAHVmrZMHsT8NGo+HwkjTJsNErS6QqIkBxDw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./assets/js/util.js"></script>
     <script src="./assets/js/geocodeAPI.js"></script>
     <script src="./assets/js/nws-api.js"></script>
