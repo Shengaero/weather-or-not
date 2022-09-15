@@ -25,19 +25,36 @@ searchBtnEl.click(function (event) {
 
 //function to display the correct info depending on what is saved, or search, etc.
 function displayInfo() {
-    let params = {};
+    let params = getQueryParams();
     let coords = loadCoordinates();
+    console.log(params);
+    console.log(params.city);
+    let cityParamExists = (typeof params.city) === 'undefined';
     //IF there are no query parameters, and no local storage info THEN display default message
-    if(params.city === '' && !coords) {
+    if(!cityParamExists && !coords) {
         console.log('Default message');
+
         //ELSE IF there are no query parameters, but there is local storage info THEN display info based on local storage info
-    } else if(params.city === '' && coords != null) {
+    } else if(!cityParamExists && coords != null) {
         console.log('Display info based on local storage');
+        fetchForecast(coords).then(
+            console.log(coords)
+        );
+
         //ELSE IF there are query parameters THEN display info based off of query parameters
-    } else if(params.city != '') {
+    } else if(cityParamExists) {
+        let cityName = params.city;
         console.log('Display info based off query parameters');
+        fetchLatLon(cityName).then(
+            console.log(cityName)
+        );
     };
 }
 
 // if we are not on index.html homepage, dont run this function
 displayInfo();
+
+
+
+// if we have the coordinates already fetch the weather;
+// if we dont have the coordinates we are going to get coordinates then fetch the weather

@@ -49,7 +49,7 @@ function getQueryParams() {
     // if the first character is '?'
     if(searchString.charAt(0) === '?') {
         // remove that '?'
-        searchString = searchString.substring(1, searchString.length - 1);
+        searchString = searchString.substring(1, searchString.length);
     }
     // split the string into parts
     let searchParts = searchString.split('&');
