@@ -9,6 +9,7 @@ console.log(timeOutside.val());
 // request user location
 requestLocation();
 // opens modal
+
 $(document).ready(function () {
     $('.modal').modal();
 });
@@ -21,3 +22,20 @@ $(document).ready(function () {
 //     reset()
 // })
 $('#modal-submit').on('click', onModalSubmit);
+
+function onModalSubmit() {
+    // alert('working!')
+    console.log(timeOutside.val());
+
+    localStorage.setItem("hours-outside", JSON.stringify(timeOutside.val()))
+
+    location.reload();
+    
+   
+
+
+    // timeOutside.empty();
+ 
+}
+
+
