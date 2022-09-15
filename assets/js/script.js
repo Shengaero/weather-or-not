@@ -39,7 +39,7 @@ function generateModal() {
         }
         // append a new option
         let newOption = $('<option>').attr('value', (i - 5).toString()).text(text);
-        newOption.on('click', () => console.log('test'))
+        // newOption.on('click', () => console.log('test'))
         timeOutside.append(newOption);
     }
 
