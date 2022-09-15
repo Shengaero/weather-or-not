@@ -67,7 +67,7 @@ function displayPleaseWait() {
 }
 
 //function to display the correct info depending on what is saved, or search, etc.
-function displayInfo() {
+function displaySearchInfo() {
     let params = getQueryParams();
     let coords = loadCoordinates();
     let cityParamExists = (typeof params.q) !== 'undefined';
@@ -94,7 +94,7 @@ function displayInfo() {
             // let fetchParameters = {lat: data.lat, lon: data.lon};
             return fetchForecast(data);
         }).then((data) => {
-            displayInfoAfterRequest(data, start, end);
+            displaySearchInfoAfterRequest(data, start, end);
             // whyBringEl.text(data.forecast[0].description);
             // this will be a function for what we are displaying in the front page 
             // console.log(data.forecast[0]);
@@ -108,7 +108,7 @@ function displayInfo() {
             // let savedCoords = {fetchParameters};
             return fetchForecast(data);
         }).then((data) => {
-            displayInfoAfterRequest(data, start, end);
+            displaySearchInfoAfterRequest(data, start, end);
             // whyBringEl.text(data.forecast[0].description);
             // this will be a function for what we are displaying in the front page 
             // console.log(data.forecast[0]);
@@ -116,7 +116,7 @@ function displayInfo() {
     };
 }
 
-function displayInfoAfterRequest(data, from, to, excludedHours) {
+function displaySearchInfoAfterRequest(data, from, to, excludedHours) {
     // trim the data set for what we need
     trimDataSet(data, from, to, excludedHours);
     // get the tools per each hour
@@ -147,4 +147,4 @@ function catchErrors() {
 // generate modal stuff
 generateModal()
 // if we are not on index.html homepage, dont run this function
-displayInfo();
+displaySearchInfo();
