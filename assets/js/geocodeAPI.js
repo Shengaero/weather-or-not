@@ -48,7 +48,7 @@ function fetchReverseLatLon(lat, lon) {
             // if there's a village property 
             } else if(address.village) {
                 // set the location info city property to it
-                locationInfo.name = address.state;
+                locationInfo.city = address.village;
             }
 
             // if there's a state property
