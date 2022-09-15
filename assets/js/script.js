@@ -28,28 +28,32 @@ function displayInfo() {
     let params = getQueryParams();
     let coords = loadCoordinates();
     let cityParamExists = (typeof params.q) !== 'undefined';
-    //IF there are no query parameters, and no local storage info THEN display default message
+    // If there are no query parameters, and no local storage info then display default message
     if(!cityParamExists && coords === null) {
+        // something to display the message for having no selected location will go here
         console.log('Default message');
 
-        //ELSE IF there are no query parameters, but there is local storage info THEN display info based on local storage info
+    // Else if there are no query parameters, but there is local storage info then display info based on local storage info
     } else if(!cityParamExists && coords != null) {
-        console.log('Display info based on local storage');
-        fetchForecast(coords).then((data) => {
+        fetchReverseLatLon(coords.lat, coords.lon).then((data) => {
+            let fetchParameters = {lat: data.lat, lon: data.lon};
+            return fetchForecast(fetchParameters);
+        }).then((data) => {
+            // this will be a function for what we are displaying in the front page 
             console.log(data.forecast[0]);
         }
         );
 
-        //ELSE IF there are query parameters THEN display info based off of query parameters
+    // Else if there are query parameters then display info based off of query parameters
     } else if(cityParamExists) {
         let cityName = params.q;
-        console.log('Display info based off query parameters');
         fetchLatLon(cityName).then((data) => {
-            let savedCoords = {lat: data.lat, lon: data.lon};
-            fetchForecast(savedCoords).then((data) => {
-                console.log(data.forecast[0]);
-            }
-            );
+            let fetchParameters = {lat: data.lat, lon: data.lon};
+            let savedCoords = {fetchParameters};
+            return fetchForecast(savedCoords);
+        }).then((data) => {
+            // this will be a function for what we are displaying in the front page 
+            console.log(data.forecast[0]);
         }
         );
     };
