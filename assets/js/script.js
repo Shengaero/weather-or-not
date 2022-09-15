@@ -20,3 +20,4 @@ $(document).ready(function () {
 // instance.onCloseEnd({
 //     reset()
 // })
+$('#modal-submit').on('click', onModalSubmit);
