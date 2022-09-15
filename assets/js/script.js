@@ -98,7 +98,7 @@ function displayInfo() {
             // whyBringEl.text(data.forecast[0].description);
             // this will be a function for what we are displaying in the front page 
             // console.log(data.forecast[0]);
-        });
+        }).catch(catchErrors);
 
     // Else if there are query parameters then display info based off of query parameters
     } else if(cityParamExists) {
@@ -112,7 +112,7 @@ function displayInfo() {
             // whyBringEl.text(data.forecast[0].description);
             // this will be a function for what we are displaying in the front page 
             // console.log(data.forecast[0]);
-        });
+        }).catch(catchErrors);
     };
 }
 
@@ -136,6 +136,12 @@ function displayInfoAfterRequest(data, from, to, excludedHours) {
         });
     }
     // TODO display the tools needed as text on the page
+}
+
+// function for catching promise errors, will display that something went wrong and to try later
+function catchErrors() {
+    shouldBringEl.text('Oops, that wasn\'t supposed to happen?');
+    whyBringEl.text('An unexpected error occurred, maybe try again later?')
 }
 
 // generate modal stuff
