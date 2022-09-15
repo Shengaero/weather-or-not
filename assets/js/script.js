@@ -25,15 +25,16 @@ searchBtnEl.click(function (event) {
 
 //function to display the correct info depending on what is saved, or search, etc.
 function displayInfo() {
+    let params = {};
     let coords = loadCoordinates();
     //IF there are no query parameters, and no local storage info THEN display default message
-    if(location.search === '' && !coords) {
+    if(params.city === '' && !coords) {
         console.log('Default message');
-    //ELSE IF there are no query parameters, but there is local storage info THEN display info based on local storage info
-    } else if(location.search === '' && coords != null) {
+        //ELSE IF there are no query parameters, but there is local storage info THEN display info based on local storage info
+    } else if(params.city === '' && coords != null) {
         console.log('Display info based on local storage');
-    //ELSE IF there are query parameters THEN display info based off of query parameters
-    } else if(location.search != '') {
+        //ELSE IF there are query parameters THEN display info based off of query parameters
+    } else if(params.city != '') {
         console.log('Display info based off query parameters');
     };
 }
