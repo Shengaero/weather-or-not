@@ -34,8 +34,16 @@ function generateModal() {
             text = `${i - 12} PM`;
         }
         // append a new option
-        timeOutside.append($('<option>').attr('value', (i - 5).toString()).text(text));
+        let newOption = $('<option>').attr('value', (i - 5).toString()).text(text);
+        newOption.on('click', () => console.log('test'))
+        timeOutside.append(newOption);
     }
+
+    $('#modal-submit').on('click', onModalSubmit);
+}
+
+function onModalSubmit() {
+    // TODO Hook up event listener
 }
 
 generateModal()
