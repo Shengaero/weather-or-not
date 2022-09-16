@@ -5,6 +5,7 @@ let advancedSearchPreferencesStorageKey = 'preferred-advanced-search';
 let tools = [
     {
         name: 'umbrella',
+        displayName: 'an umbrella',
         isFor: 'rain',
         condition: function (forecast) {
             let desc = forecast.description.toLowerCase();
@@ -14,6 +15,7 @@ let tools = [
     },
     {
         name: 'raincoat',
+        displayName:'a raincoat',
         isFor: 'rain',
         condition: function (forecast) {
             let desc = forecast.description.toLowerCase();
@@ -32,6 +34,7 @@ let tools = [
     },
     {
         name: 'winter coat',
+        displayName: 'a wintercoat',
         isFor: 'cold',
         condition: function (forecast) {
             let temp = forecast.temp;
@@ -40,21 +43,21 @@ let tools = [
     }
 ];
 
-function trimDataSet(data, from, to, includedHours) {
+function trimDataSet(data, from, to, includedHours, days) {
     // grab the first hour that we care about
     let startIndex = 0;
     for(; startIndex < data.forecast.length; startIndex++) {
         let hourForecast = data.forecast[startIndex];
-        if(hourForecast.time.isAfter(from)) {
+        if(hourForecast.time.hour() == from.hour() || hourForecast.time.isAfter(from)) {
             break;
         }
     }
 
-    // get the last hour that we care about
+    // get the last hour that we care about, also consider days
     let endIndex = startIndex;
     for(; endIndex < data.forecast.length; endIndex++) {
         let hourForecast = data.forecast[endIndex];
-        if(hourForecast.time.isAfter(to)) {
+        if(hourForecast.time.isAfter(to.add(parseInt(days), 'days'))) {
             break;
         }
     }
@@ -62,7 +65,23 @@ function trimDataSet(data, from, to, includedHours) {
     // set forecast to the slice between the first and last hours we care about
     data.forecast = data.forecast.slice(startIndex, endIndex)
 
-    // TODO implement excluded hours
+    if(includedHours.length !== 0) {
+        let includedData = [];
+        for(let i = 0; i < data.forecast.length; i++) {
+            let hourForecast = data.forecast[i];
+            for(let j = 0; j < includedHours.length; j++) {
+                // console.log(`includedHours[${j}] => ${includedHours[j]}`)
+                // console.log(`hourForecast.time.hour() => ${hourForecast.time.hour()}`)
+                if(parseInt(includedHours[j]) === parseInt(hourForecast.time.hour())) {
+                    includedData.push(hourForecast);
+                    break;
+                }
+            }
+        }
+        data.forecast = includedData;
+    }
+    console.log(data)
+    // TODO days
 }
 
 // modifies the provided data to include tools via data.forecast[i].tools
@@ -171,13 +190,15 @@ function loadJSONFromLocalStorage(key) {
     let obj = null;
     let objString = localStorage.getItem(key);
     if(objString !== null) {
-        obj = {};
-        JSON.parse(objString, (k, v) => {
-            if(k === '') {
-                return;
-            }
-            obj[k] = v;
-        });
+        obj = JSON.parse(objString);
+        // obj = {};
+        // JSON.parse(objString, (k, v) => {
+        //     if(k === '') {
+        //         return;
+        //     }
+        //     console.log(v)
+        //     obj[k] = v;
+        // });
     }
     return obj;
 }

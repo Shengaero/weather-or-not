@@ -5,10 +5,9 @@ let displayInfoEl = $("#tools-needed");
 let shouldBringEl = $('#should-bring');
 let whyBringEl = $('#why-bring');
 
-var timeOutside = $("#time-outside")
-console.log(timeOutside.val());
-// var instance = M.Modal.getInstance(elem);
-// request user location
+let advancedSearchCity = $('#advanced-search-city');
+let daysOutside = $('#days-outside');
+let timeOutside = $('#time-outside');
 requestLocation();
 
 function generateModal() {
@@ -23,7 +22,7 @@ function generateModal() {
     });
 
     // grab the #time-outside element
-    let timeOutside = $('#time-outside');
+    // let timeOutside = $('#time-outside');
 
     // for 6 through 22
     for(let i = 6; i <= 22; i++) {
@@ -39,7 +38,7 @@ function generateModal() {
             text = `${i - 12} PM`;
         }
         // append a new option
-        let newOption = $('<option>').attr('value', (i - 5).toString()).text(text);
+        let newOption = $('<option>').attr('value', (i).toString()).text(text);
         // newOption.on('click', () => console.log('test'))
         timeOutside.append(newOption);
     }
@@ -50,13 +49,23 @@ function generateModal() {
 function onModalSubmit() {
     // should we save settings?
     let saveSettings = $('#save-settings')[0].checked;
+    let advancedSearchCityValue = advancedSearchCity.val();
+    let daysOutsideValue = daysOutside.val();
     let timeOutsideValue = timeOutside.val();
 
     if(saveSettings) {
-        
+        storeAdvancedSearch(advancedSearchCityValue, daysOutsideValue, timeOutsideValue);
+        location.search = ''; // clear search
+        return;
     }
-    localStorage.setItem("hours-outside", JSON.stringify(timeOutside.val()))
-    // location.reload();
+    let searchString = `q=${advancedSearchCityValue}`;
+    if(daysOutsideValue != null) {
+        searchString += `&days=${daysOutsideValue}`;
+    }
+    if(timeOutsideValue != null) {
+        searchString += `&hours=${timeOutsideValue.join(',')}`;
+    }
+    location.search = searchString;
 }
 
 //click event for submiting a searched city
@@ -77,9 +86,10 @@ function displayPleaseWait() {
 function displaySearchInfo() {
     let params = getQueryParams();
     let coords = loadCoordinates();
+    let advancedSearch = loadAdvancedSearch();
     let cityParamExists = (typeof params.q) !== 'undefined';
     // If there are no query parameters, and no local storage info then display default message
-    if(!cityParamExists && coords === null) {
+    if(!cityParamExists && coords === null && advancedSearch == null) {
         // something to display the message for having no selected location will go here
         console.log('Default message');
         return;
@@ -93,7 +103,32 @@ function displaySearchInfo() {
     // end time is 10 hours after that, this might be different depending on user preferences but by default it will be this
     let end = start.clone().add(10, 'hour');
 
-    let includedHours = []; // TODO implement included hours
+    // works
+    let includedHours = [];
+    if((typeof params.hours) !== 'undefined') {
+        includedHours = params.hours.split(',');
+    } else if(advancedSearch !== null && !cityParamExists) {
+        if(advancedSearch.hours) {
+            includedHours = advancedSearch.hours;
+        }
+    }
+
+    // works
+    if(includedHours.length > 0) {
+        console.log(includedHours[0])
+        start = start.hour(parseInt(includedHours[0]));
+        end = end.hour(parseInt(includedHours[includedHours.length - 1]));
+    }
+
+    // works
+    let days = 0;
+    if((typeof params.days) !== 'undefined') {
+        days = params.days;
+    } else if(advancedSearch !== null && !cityParamExists) {
+        if(advancedSearch.days) {
+            days = advancedSearch.days;
+        }
+    }
 
     // if there are no query parameters, but there is local storage info then display info based on local storage info
     if(!cityParamExists && coords != null) {
@@ -101,7 +136,7 @@ function displaySearchInfo() {
             // let fetchParameters = {lat: data.lat, lon: data.lon};
             return fetchForecast(data);
         }).then((data) => {
-            displaySearchInfoAfterRequest(data, start, end, includedHours);
+            displaySearchInfoAfterRequest(data, start, end, includedHours, days);
             // whyBringEl.text(data.forecast[0].description);
             // this will be a function for what we are displaying in the front page 
             // console.log(data.forecast[0]);
@@ -115,7 +150,7 @@ function displaySearchInfo() {
             // let savedCoords = {fetchParameters};
             return fetchForecast(data);
         }).then((data) => {
-            displaySearchInfoAfterRequest(data, start, end, includedHours);
+            displaySearchInfoAfterRequest(data, start, end, includedHours, days);
             // whyBringEl.text(data.forecast[0].description);
             // this will be a function for what we are displaying in the front page 
             // console.log(data.forecast[0]);
@@ -123,32 +158,59 @@ function displaySearchInfo() {
     };
 }
 
-function displaySearchInfoAfterRequest(data, from, to, includedHours) {
+function displaySearchInfoAfterRequest(data, from, to, includedHours, days) {
     // trim the data set for what we need
-    trimDataSet(data, from, to, includedHours);
+    trimDataSet(data, from, to, includedHours, days);
     // get the tools per each hour
     getToolsPerHour(data);
     // then we get the tools we need over the range of time we're looking at, finally...
     let toolsNeeded = [];
     // for each hour
-    for(let i = 0; i < data.forecast.length; i++) {
-        let hourForecast = data.forecast[i];
+    for(let hourForecast of data.forecast) {
         // for each tool
-        hourForecast.tools.forEach(tool => {
+        for(let tool of hourForecast.tools) {
             // if it's not already accounted for
             if(!toolsNeeded.includes(tool)) {
                 // push it to the array
                 toolsNeeded.push(tool);
             }
-        });
+        }
     }
-    // TODO display the tools needed as text on the page
+
+    if(toolsNeeded.length === 0) {
+        shouldBringEl.text("You're good to go!");
+        whyBringEl.text('The weather is looking fine for now!')
+    } else {
+        let shouldBringToolsString = '';
+        for(let i in toolsNeeded) {
+            let last = toolsNeeded.length - 1 === i;
+            if(last && toolsNeeded.length > 1) {
+                shouldBringToolsString += 'and '
+            }
+            shouldBringToolsString += toolsNeeded[i].displayName;
+            if(!last && toolsNeeded.length > 1) {
+                shouldBringToolsString += ', ';
+            }
+        }
+        shouldBringEl.text(`You should bring ${shouldBringToolsString}`);
+        let typesOfWeather = [];
+        data.forecast.forEach((hourForecast) => {
+            if(hourForecast.tools.length < 1) {
+                return;
+            }
+            if(!typesOfWeather.includes(hourForecast.description)) {
+                typesOfWeather.push(hourForecast.description);
+            }
+        })
+        whyBringEl.text(typesOfWeather.join(', '))
+    }
 }
 
 // function for catching promise errors, will display that something went wrong and to try later
-function catchErrors() {
+function catchErrors(error) {
     shouldBringEl.text('Oops, that wasn\'t supposed to happen?');
     whyBringEl.text('An unexpected error occurred, maybe try again later?')
+    console.log(error)
 }
 
 // generate modal stuff
