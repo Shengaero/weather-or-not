@@ -7,9 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- I added the css links here -->
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/about.css">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <title>Document</title>
@@ -18,25 +19,42 @@
 <body>
     <header>
         <nav>
-            <div class="nav-wrapper">
+            <div class="nav-wrapper deep-purple lighten-3">
                 <a href="#" class="brand-logo">Weather or Not</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <!-- made the same navbar just changed the second link to loop back to the home page -->
-                    <li><a href="https://github.com/Shengaero/weather-or-not">Github</a></li>
+                    <li><a href="https://github.com/Shengaero/weather-or-not" target="_blank">Github</a></li>
                     <li><a href="index.html">Home</a></li>
                 </ul>
             </div>
         </nav>
     </header>
-    <main>
-        <div>
-            <h1>About us</h1>
+    <!-- This is where our main content should be placed -->
+    <main class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card large blue-grey darken-1 card-panel">
+                    <div class="card-content white-text center-align">
+                        <h1 class="head-div">About us</h1>
+                        <p>
+                            Have you ever woke up and realized you didnt have the time to watch the news to figure out the weather and checking the forecast on your phone just gives a vague desription? This weather application was made in order to make figuring out what to bring or wear outside just a tinsy bit easier. The "Weather or Not" app was made to tell you if you need to bring an umbrella, coat or anything else for your day to day activities. No longer will you go outside expecting a normal day and getting wet just because you didnt think a 35% chance of rain would turn into a downpour. Our weather app takes information from the National Weather Service API and a geocoding API to get up to date weather forecasts for your current location. It also includes some extra functionality to log your city and track the weather on an hourly timeframe. More functionality to come in a later patch/update.
+                        </p>
+                    </div>
+                    <!-- These links are going to link to our personal github pages or and information page -->
+                    <div class="card-action center-align name-space">
+                        <a href="https://github.com/Shengaero" target="_blank">Kaidan</a>
+                        <a href="https://github.com/park-d" target="_blank">Devan</a>
+                        <a href="https://github.com/BryceOph" target="_blank">Bryce</a>
+                        <a href="https://github.com/bobbeekethdy1025" target="_blank">Bobbee</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     <footer>
 
     </footer>
-     <!-- I added the js, jquery and css scripts here -->
+    <!-- I added the js, jquery and css scripts here -->
     <script src="https://code.jquery.com/jquery-3.6.1.js"
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

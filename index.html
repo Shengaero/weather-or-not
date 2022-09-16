@@ -24,7 +24,7 @@
                 <a href="#" class="brand-logo">Weather or Not</a>
                 <ul id="nav-mobile" class="right">
                     <!-- <li><a href="sass.html">Sass</a></li> -->
-                    <li><a href="https://github.com/Shengaero/weather-or-not">Github</a></li>
+                    <li><a href="https://github.com/Shengaero/weather-or-not" target="_blank">Github</a></li>
                     <li><a href="about-us.html">About Us</a></li>
                 </ul>
             </div>
@@ -35,9 +35,9 @@
         <!-- This is the Main Card display that will show whether or not you need to bring an umbrella -->
         <div class="row corners main-card">
             <div class="col s12 m12 l12">
-                <div class="card blue lighten-2 darken-1 card-panel hoverable ">
+                <div class="card medium blue lighten-2 darken-1 card-panel hoverable ">
                     <div class="card-content white-text center-align" id="tools-needed">
-                        <span class="card-title" id="should-bring">You Should Bring An Umbrella</span>
+                        <span class="card-title" id="should-bring">You Should Bring An Umbrella?</span>
                         <p id="why-bring">This will contain context for the reasoning behind needing an umbrella,
                             raincoat, and ect.
                         </p>
@@ -50,10 +50,9 @@
             <form class="col s12 m12 l12 ">
                 <div class="row">
                     <div class="input-field col s12 m12 l12 black-text">
-                        <input id="search-city" type="text" class="">
+                        <input id="search-city" type="text" class="" autocomplete="off">
                         <label>Enter City</label>
-                        <button class="waves-effect waves-light btn" id="search-btn" autocomplete="off"
-                            type="submit">Find City</button>
+                        <button class="waves-effect waves-light btn" id="search-btn" type="submit">Find City</button>
                         <p class="checkbox-save">
                             <label>
                                 <input type="checkbox" id="save-city" class="filled-in" checked="checked" />
@@ -66,13 +65,17 @@
         </div>
         <!-- Modal Trigger -->
         <div class="indigo lighten-5 modal-btn corners">
-            <a class="waves-effect waves-light btn modal-trigger" href="#modal1" id="settings-btn">Advanced
-                Settings</a>
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal1" id="adv-search-btn">Advanced
+                Search!</a>
         </div>
         <!-- Modal Structure -->
         <div id="modal1" class="modal modal-fixed-footer">
             <div class="modal-content">
                 <h4>Modal Header</h4>
+                <div class="input-field col s12">
+                    <input id="search-city" type="text" autocomplete="off">
+                    <label>Enter City</label>
+                </div>
                 <div class="input-field col s12">
                     <select>
                         <option value="" disabled selected>How many days would you like forecasted?</option>
@@ -85,7 +88,7 @@
                 </div>
                 <div class="input-field col s12">
                     <select id="time-outside" multiple>
-                        <option value="" disabled selected>How many hours will you be outside?</option>
+                        <option value="0" selected>How many hours will you be outside?</option>
                         <option value="1">6am</option>
                         <option value="2">7am</option>
                         <option value="3">8am</option>
@@ -107,20 +110,14 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Submit</a>
+                <p class="checkbox-save last-checkbox left">
+                    <label>
+                        <input type="checkbox" id="save-settings" class="filled-in" checked="checked" />
+                        <span>Save Settings!</span>
+                    </label>
+                </p>
+                <a id="modal-submit" href="#!" class="modal-close waves-effect waves-green btn-flat">Submit</a>
             </div>
-        </div>
-        <div class="indigo lighten-5 corners">
-            <ul id="selected-data" class="collection options-selected">
-                <li class="collection-item"><span id="days-fore">How many days would you like forecasted?</span></li>
-                <li class="collection-item"><span id="hours-outside">What hours will you be outside?</span></li>
-            </ul>
-            <p class="checkbox-save last-checkbox">
-                <label>
-                    <input type="checkbox" id="save-settings" class="filled-in" checked="checked" />
-                    <span>Save Settings!</span>
-                </label>
-            </p>
         </div>
     </main>
 
