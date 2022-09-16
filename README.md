@@ -16,7 +16,7 @@ In addition, there are links to the project github and an "About Us" page, which
 
 Application deployed at the following link: https://shengaero.github.io/weather-or-not/
 
-![Gif of the webpage functionality](./assets/images/weatherDashboard.JPG)
+![Gif of the webpage functionality](./assets/images/weather-or-not-functionality.gif)
 
 ## Credits
 
