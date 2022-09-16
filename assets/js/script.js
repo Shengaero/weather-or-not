@@ -91,7 +91,7 @@ function displaySearchInfo() {
     // If there are no query parameters, and no local storage info then display default message
     if(!cityParamExists && coords === null && advancedSearch == null) {
         // something to display the message for having no selected location will go here
-        console.log('Default message');
+        // console.log('Default message');
         return;
     }
 
@@ -115,7 +115,7 @@ function displaySearchInfo() {
 
     // works
     if(includedHours.length > 0) {
-        console.log(includedHours[0])
+        // console.log(includedHours[0])
         start = start.hour(parseInt(includedHours[0]));
         end = end.hour(parseInt(includedHours[includedHours.length - 1]));
     }
@@ -187,7 +187,7 @@ function displaySearchInfoAfterRequest(data, from, to, includedHours, days) {
         }
         let shouldBringToolsString = '';
         for(let i in toolsNeeded) {
-            let last = toolsNeeded.length - 1 === i;
+            let last = toolsNeeded.length - 1 === parseInt(i);
             if(last && toolsNeeded.length > 1) {
                 shouldBringToolsString += 'and '
             }
@@ -214,7 +214,7 @@ function displaySearchInfoAfterRequest(data, from, to, includedHours, days) {
 function catchErrors(error) {
     shouldBringEl.text('Oops, that wasn\'t supposed to happen?');
     whyBringEl.text('An unexpected error occurred, maybe try again later?')
-    console.log(error)
+    // console.log(error)
 }
 
 // generate modal stuff

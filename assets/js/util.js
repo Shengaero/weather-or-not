@@ -80,7 +80,7 @@ function trimDataSet(data, from, to, includedHours, days) {
         }
         data.forecast = includedData;
     }
-    console.log(data)
+    // console.log(data)
     // TODO days
 }
 
@@ -172,7 +172,7 @@ function storeCoordinates(coords) {
         localStorage.removeItem(coordsLocalStorageKey);
         return;
     }
-    console.log(coords)
+    // console.log(coords)
     localStorage.setItem(coordsLocalStorageKey, JSON.stringify(coords));
 }
 
