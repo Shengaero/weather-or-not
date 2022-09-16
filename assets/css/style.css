@@ -11,7 +11,7 @@ body {
     height: 100%;
     margin: 0;
     overflow: hidden;
-    background: linear-gradient(to bottom, #202020, #111119);
+    /* background: linear-gradient(to bottom, #202020, #111119); */
 }
 
 .rain {
@@ -20,6 +20,7 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1;
+    background: linear-gradient(to bottom, #202020, #111119);
 }
 
 .rain.back-row {
@@ -127,6 +128,7 @@ body.splat-toggle .splat {
 canvas {
     display: inline-block;
     position: fixed;
+    background: linear-gradient(to bottom, #202020, #111119);
 }
 /* Snow Effect stops here */
 

@@ -181,6 +181,10 @@ function displaySearchInfoAfterRequest(data, from, to, includedHours, days) {
         shouldBringEl.text("You're good to go!");
         whyBringEl.text('The weather is looking fine for now!')
     } else {
+        let first = toolsNeeded[0];
+        if(first.isFor === 'rain') {
+            makeItRain();
+        }
         let shouldBringToolsString = '';
         for(let i in toolsNeeded) {
             let last = toolsNeeded.length - 1 === i;

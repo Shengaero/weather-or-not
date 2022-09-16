@@ -1,5 +1,9 @@
 // This is the Rain Effect Function
 var makeItRain = function () {
+    let frontRow = $('<div class="rain front-row">')
+    let backRow = $('<div class="rain back-row">')
+    $('#bg-effects').append(frontRow);
+    $('#bg-effects').append(backRow)
     //clear out everything
     $('.rain').empty();
 
@@ -24,7 +28,7 @@ var makeItRain = function () {
     $('.rain.back-row').append(backDrops);
 };
 
-// makeItRain();
+
 
 
 
