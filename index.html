@@ -16,7 +16,6 @@
 </head>
 
 <body>
-
     <header>
         <nav>
             <!-- This is the header which contains the nav bar. Contains the Website Name and Links to About us and Github -->
@@ -30,7 +29,12 @@
             </div>
         </nav>
     </header>
-
+    <!-- Rain Effect -->
+            <!-- <div class="rain front-row"></div>
+            <div class="rain back-row"></div>
+            <! Snow Effect -->
+            <!-- <canvas id="canvas"></canvas>  -->
+    <div id="bg-effects"></div>
     <main class="container">
         <!-- This is the Main Card display that will show whether or not you need to bring an umbrella -->
         <div class="row corners main-card">
@@ -52,8 +56,9 @@
                     <div class="input-field col s12 m12 l12 black-text">
                         <input id="search-city" type="text" class="" autocomplete="off">
                         <label>Enter City</label>
-                        <button class="waves-effect waves-light btn" id="search-btn" type="submit">Find City</button>
-                        <p class="checkbox-save">
+                        <button class="waves-effect waves-light btn" id="search-btn" autocomplete="off"
+                            type="submit">Find City</button>
+                        <p>
                             <label>
                                 <input type="checkbox" id="save-city" class="filled-in" checked="checked" />
                                 <span>Save City!</span>
@@ -120,9 +125,10 @@
             </div>
         </div>
     </main>
-
-    <footer>
-
+        <!-- Rain Effect -->
+        <!-- Snow Effect -->
+        <!-- <canvas id="canvas"></canvas> -->
+        <footer>
     </footer>
     <!-- Added jquery, dayjs, materialize, and javascript scripts -->
     <script src="https://code.jquery.com/jquery-3.6.1.js"
@@ -131,6 +137,8 @@
         integrity="sha512-Ot7ArUEhJDU0cwoBNNnWe487kjL5wAOsIYig8llY/l0P2TUFwgsAHVmrZMHsT8NGo+HwkjTJsNErS6QqIkBxDw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- <script src="./assets/js/snoweffect.js"></script> -->
+    <script src="./assets/js/raineffect.js"></script>
     <script src="./assets/js/util.js"></script>
     <script src="./assets/js/geocodeAPI.js"></script>
     <script src="./assets/js/nws-api.js"></script>
