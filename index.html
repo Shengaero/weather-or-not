@@ -73,11 +73,11 @@
             <div class="modal-content">
                 <h4>Modal Header</h4>
                 <div class="input-field col s12">
-                    <input id="search-city" type="text" autocomplete="off">
+                    <input id="advanced-search-city" type="text" autocomplete="off">
                     <label>Enter City</label>
                 </div>
                 <div class="input-field col s12">
-                    <select>
+                    <select id="days-outside">
                         <option value="" disabled selected>How many days would you like forecasted?</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -86,10 +86,10 @@
                         <option value="5">5</option>
                     </select>
                 </div>
-                <div class="input-field col s12">
+                <div id="hours-select" class="input-field col s12">
                     <select id="time-outside" multiple>
-                        <option value="0" selected>How many hours will you be outside?</option>
-                        <option value="1">6am</option>
+                        <option value="" disabled>How many hours will you be outside?</option>
+                        <!-- <option value="1">6am</option>
                         <option value="2">7am</option>
                         <option value="3">8am</option>
                         <option value="4">9am</option>
@@ -105,14 +105,14 @@
                         <option value="14">7pm</option>
                         <option value="15">8pm</option>
                         <option value="16">9pm</option>
-                        <option value="17">10pm</option>
+                        <option value="17">10pm</option> -->
                     </select>
                 </div>
             </div>
             <div class="modal-footer">
                 <p class="checkbox-save last-checkbox left">
                     <label>
-                        <input type="checkbox" id="save-settings" class="filled-in" checked="checked" />
+                        <input type="checkbox" id="save-settings" class="filled-in"/>
                         <span>Save Settings!</span>
                     </label>
                 </p>
