@@ -48,8 +48,15 @@ function generateModal() {
 }
 
 function onModalSubmit() {
+    // should we save settings?
+    let saveSettings = $('#save-settings')[0].checked;
+    let timeOutsideValue = timeOutside.val();
+
+    if(saveSettings) {
+        
+    }
     localStorage.setItem("hours-outside", JSON.stringify(timeOutside.val()))
-    location.reload();
+    // location.reload();
 }
 
 //click event for submiting a searched city
@@ -86,7 +93,7 @@ function displaySearchInfo() {
     // end time is 10 hours after that, this might be different depending on user preferences but by default it will be this
     let end = start.clone().add(10, 'hour');
 
-    let excludedHours = []; // TODO implement excluded hours
+    let includedHours = []; // TODO implement included hours
 
     // if there are no query parameters, but there is local storage info then display info based on local storage info
     if(!cityParamExists && coords != null) {
@@ -94,7 +101,7 @@ function displaySearchInfo() {
             // let fetchParameters = {lat: data.lat, lon: data.lon};
             return fetchForecast(data);
         }).then((data) => {
-            displaySearchInfoAfterRequest(data, start, end);
+            displaySearchInfoAfterRequest(data, start, end, includedHours);
             // whyBringEl.text(data.forecast[0].description);
             // this will be a function for what we are displaying in the front page 
             // console.log(data.forecast[0]);
@@ -108,7 +115,7 @@ function displaySearchInfo() {
             // let savedCoords = {fetchParameters};
             return fetchForecast(data);
         }).then((data) => {
-            displaySearchInfoAfterRequest(data, start, end);
+            displaySearchInfoAfterRequest(data, start, end, includedHours);
             // whyBringEl.text(data.forecast[0].description);
             // this will be a function for what we are displaying in the front page 
             // console.log(data.forecast[0]);
@@ -116,9 +123,9 @@ function displaySearchInfo() {
     };
 }
 
-function displaySearchInfoAfterRequest(data, from, to, excludedHours) {
+function displaySearchInfoAfterRequest(data, from, to, includedHours) {
     // trim the data set for what we need
-    trimDataSet(data, from, to, excludedHours);
+    trimDataSet(data, from, to, includedHours);
     // get the tools per each hour
     getToolsPerHour(data);
     // then we get the tools we need over the range of time we're looking at, finally...

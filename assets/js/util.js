@@ -1,5 +1,6 @@
 let coordsLocalStorageKey = 'preferred-coordinates';
-let allowedQueryParameters = ['q'];
+let allowedQueryParameters = ['q', 'hours', 'days'];
+let advancedSearchPreferencesStorageKey = 'preferred-advanced-search';
 
 let tools = [
     {
@@ -39,7 +40,7 @@ let tools = [
     }
 ];
 
-function trimDataSet(data, from, to, excludedHours) {
+function trimDataSet(data, from, to, includedHours) {
     // grab the first hour that we care about
     let startIndex = 0;
     for(; startIndex < data.forecast.length; startIndex++) {
@@ -156,18 +157,37 @@ function storeCoordinates(coords) {
     localStorage.setItem(coordsLocalStorageKey, JSON.stringify(coords));
 }
 
-// loads the coordinates if they exist, otherwise returns undefined
-function loadCoordinates() {
-    let coords = null;
-    let coordsString = localStorage.getItem(coordsLocalStorageKey);
-    if(coordsString !== null) {
-        coords = {};
-        JSON.parse(coordsString, (k, v) => {
+function storeAdvancedSearch(city, days, hours) {
+    let advancedSearch = {
+        city: city,
+        days: days,
+        hours: hours
+    };
+
+    localStorage.setItem(advancedSearchPreferencesStorageKey, JSON.stringify(advancedSearch));
+}
+
+function loadJSONFromLocalStorage(key) {
+    let obj = null;
+    let objString = localStorage.getItem(key);
+    if(objString !== null) {
+        obj = {};
+        JSON.parse(objString, (k, v) => {
             if(k === '') {
                 return;
             }
-            coords[k] = v;
+            obj[k] = v;
         });
     }
-    return coords;
+    return obj;
+}
+
+// loads the coordinates if they exist, otherwise returns null
+function loadCoordinates() {
+    return loadJSONFromLocalStorage(coordsLocalStorageKey)
+}
+
+// loads advanced search prefs, otherwise returns null
+function loadAdvancedSearch() {
+    return loadJSONFromLocalStorage(advancedSearchPreferencesStorageKey);
 }
